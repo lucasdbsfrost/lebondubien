@@ -41,6 +41,7 @@
   --trait: rgb(239 230 210 / .14);
   --sang: #C62A20;          /* le Rouge du blason */
   --sang-vif: #E0392C;
+  --sang-texte: #EC584C;    /* le rouge des écritures : 5,5:1 sur le fond */
   --sang-sombre: #5E140F;
   --lumiere: #FFF4DA;       /* le Blanc : la Lumière */
   --or: #CFA54C;            /* le sacré */
@@ -55,7 +56,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--entete) + 16px); scrollbar-color: #4A3A33 var(--nuit); accent-color: var(--sang); caret-color: var(--sang-vif); }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--entete) + 16px); scrollbar-color: #4A3A33 var(--nuit); accent-color: var(--sang); caret-color: var(--sang-texte); }
 output, .recherche output { font-variant-numeric: tabular-nums; }
 body {
   margin: 0; min-height: 100vh;
@@ -133,7 +134,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   }
   .menu-ouvert .nav-liens { visibility: visible; opacity: 1; }
   .nav-liens a { padding: 18px 0; font-size: 1.05rem; color: var(--ivoire); border-bottom: 1px solid var(--trait); }
-  .nav-liens a[aria-current='page'] { border-bottom-color: var(--trait); color: var(--sang-vif); }
+  .nav-liens a[aria-current='page'] { border-bottom-color: var(--trait); color: var(--sang-texte); }
   .nav-liens .nav-rejoindre { display: block; }
   .nav-liens .nav-rejoindre .bouton { display: flex; width: 100%; margin-top: 24px; }
 }
@@ -187,9 +188,8 @@ main { display: block; min-height: 70vh; outline: none; }
 @keyframes inviter { 50% { transform: translateY(5px); } }
 .passage-passer {
   position: absolute; right: var(--marge); bottom: 18px; z-index: 3;
-  min-height: 40px; padding: 0 16px; border: 1px solid rgb(239 230 210 / .25); background: rgb(11 9 9 / .6);
+  min-height: 44px; padding: 0 16px; border: 1px solid rgb(239 230 210 / .25); background: rgb(11 9 9 / .6);
   font: 600 .72rem/1 var(--titre); letter-spacing: .1em; color: var(--cendre);
-  opacity: clamp(0, calc((.9 - var(--p, 0)) * 10), 1);
 }
 .passage-passer:hover { color: var(--lumiere); border-color: var(--lumiere); }
 
@@ -228,7 +228,7 @@ main { display: block; min-height: 70vh; outline: none; }
   font: 600 .86rem/1 var(--titre); letter-spacing: .14em; color: var(--ivoire);
 }
 .plaques button:hover { border-color: var(--lumiere); }
-.plaques button[aria-pressed='true'] { background: var(--sang); border-color: var(--sang-vif); color: #fff; box-shadow: 0 0 28px rgb(198 42 32 / .35); }
+.plaques button[aria-pressed='true'] { background: var(--sang); border-color: var(--sang-texte); color: #fff; box-shadow: 0 0 28px rgb(198 42 32 / .35); }
 
 /* Trois côtés d'une même foi */
 .cotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; counter-reset: cote; }
@@ -244,7 +244,7 @@ main { display: block; min-height: 70vh; outline: none; }
 /* Trois pas : une vraie suite, donc numérotée */
 .pas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 4vw, 56px); }
 .pas li { position: relative; padding-top: 22px; border-top: 2px solid var(--sang); }
-.pas .num { font: 600 2.6rem/1 var(--titre); color: var(--sang-vif); display: block; margin-bottom: 16px; }
+.pas .num { font: 600 2.6rem/1 var(--titre); color: var(--sang-texte); display: block; margin-bottom: 16px; }
 .pas h3 { font-size: 1.3rem; margin-bottom: 10px; }
 .pas p { color: var(--cendre); margin: 0; }
 
@@ -253,7 +253,7 @@ main { display: block; min-height: 70vh; outline: none; }
 .voix-liste li { background: var(--nuit); }
 .voix-liste a { display: flex; flex-direction: column; height: 100%; padding: 26px 24px 22px; text-decoration: none; transition: background-color .25s; }
 .voix-liste a:hover { background: var(--nuit-2); }
-.voix-liste .num { font: 600 .8rem/1 var(--titre); color: var(--sang-vif); letter-spacing: .12em; margin-bottom: 14px; }
+.voix-liste .num { font: 600 .8rem/1 var(--titre); color: var(--sang-texte); letter-spacing: .12em; margin-bottom: 14px; }
 .voix-liste q { quotes: '« ' ' »'; font-style: italic; font-size: 1.12rem; line-height: 1.45; color: var(--ivoire); flex: 1; }
 .voix-liste .qui { margin-top: 18px; font: 600 .82rem/1.3 var(--titre); letter-spacing: .06em; color: var(--lumiere); }
 .voix-liste .qui span { display: block; font: italic 400 .98rem/1.3 var(--texte); letter-spacing: 0; color: var(--cendre); margin-top: 2px; }
@@ -294,7 +294,7 @@ main { display: block; min-height: 70vh; outline: none; }
 .echo .intro { max-width: var(--lecture); font-size: 1.22rem; }
 .echo-chapitres { counter-reset: chap; display: grid; gap: 44px; margin-top: 56px; }
 .echo-chapitre { display: grid; grid-template-columns: 9rem minmax(0, var(--lecture)); gap: 24px; }
-.echo-chapitre .num { font: 600 .82rem/1.6 var(--titre); letter-spacing: .14em; color: var(--sang-vif); }
+.echo-chapitre .num { font: 600 .82rem/1.6 var(--titre); letter-spacing: .14em; color: var(--sang-texte); }
 .echo-chapitre h3 { font-size: 1.35rem; margin-bottom: 16px; }
 .echo-chapitre p { color: #CFC6B4; }
 
@@ -312,7 +312,7 @@ main { display: block; min-height: 70vh; outline: none; }
 .generation .marque-gen svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .generation .marque-gen svg path { fill: var(--nuit); stroke: var(--sang); stroke-width: 2; }
 .generation .marque-gen span { position: relative; }
-.generation .nom-gen { margin: 6px 0 14px; font: italic 500 1.05rem/1.2 var(--texte); color: var(--sang-vif); }
+.generation .nom-gen { margin: 6px 0 14px; font: italic 500 1.05rem/1.2 var(--texte); color: var(--sang-texte); }
 .generation h2 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); margin-bottom: 14px; }
 .generation > p { color: var(--cendre); max-width: 36rem; font-size: 1.2rem; }
 .faits { list-style: none; margin: 30px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--trait); border: 1px solid var(--trait); }
@@ -334,13 +334,13 @@ main { display: block; min-height: 70vh; outline: none; }
 .branche:hover .branche-image img { transform: scale(1.03); }
 .branche-corps { padding: 24px 24px 28px; display: flex; flex-direction: column; flex: 1; }
 .branche h3 { font-size: 1.5rem; }
-.branche .sous { font-style: italic; color: var(--couleur, var(--sang-vif)); margin: 4px 0 14px; }
+.branche .sous { font-style: italic; color: var(--couleur, var(--sang-texte)); margin: 4px 0 14px; }
 .branche-corps > p { color: var(--cendre); flex: 1; }
 .branche[data-couleur='bleu'] { --couleur: var(--bleu); }
 .branche[data-couleur='blanc'] { --couleur: var(--lumiere); }
-.branche[data-couleur='rouge'] { --couleur: var(--sang-vif); }
+.branche[data-couleur='rouge'] { --couleur: var(--sang-texte); }
 .branche.est-ouverte { box-shadow: inset 0 0 0 1px var(--couleur); }
-.detail-branche { margin-top: clamp(40px, 6vw, 72px); --couleur: var(--sang-vif); }
+.detail-branche { margin-top: clamp(40px, 6vw, 72px); --couleur: var(--sang-texte); }
 .detail-branche[data-couleur='bleu'] { --couleur: var(--bleu); }
 .detail-branche[data-couleur='blanc'] { --couleur: var(--lumiere); }
 .detail-branche > h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
@@ -416,7 +416,7 @@ main { display: block; min-height: 70vh; outline: none; }
 
 /* Le livre ouvert */
 .vie-tete { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 28px; align-items: start; }
-.vie-num { font: 600 clamp(3rem, 8vw, 6rem)/.9 var(--titre); color: var(--sang-vif); }
+.vie-num { font: 600 clamp(3rem, 8vw, 6rem)/.9 var(--titre); color: var(--sang-texte); }
 .vie-tete h1 { font-size: clamp(2.1rem, 5vw, 3.8rem); }
 .vie-tete .titre-apotre { font: italic 400 1.4rem/1.3 var(--texte); color: var(--or); margin: 8px 0 26px; }
 .livre-ouvert { display: grid; grid-template-columns: 15rem minmax(0, var(--lecture)); gap: clamp(28px, 5vw, 72px); align-items: start; }
@@ -425,12 +425,12 @@ main { display: block; min-height: 70vh; outline: none; }
 .sommaire summary::-webkit-details-marker { display: none; }
 .sommaire ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--trait); }
 .sommaire a { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); padding: 6px 0 6px 14px; margin-left: -1px; border-left: 1px solid transparent; text-decoration: none; color: var(--cendre); font-size: 1rem; line-height: 1.35; }
-.sommaire a span:first-child { font: 600 .74rem/1.9 var(--titre); color: var(--sang-vif); }
+.sommaire a span:first-child { font: 600 .74rem/1.9 var(--titre); color: var(--sang-texte); }
 .sommaire a:hover { color: var(--ivoire); }
 .sommaire a.actif { color: var(--lumiere); border-left-color: var(--sang-vif); }
 .chapitre { padding-bottom: 46px; margin-bottom: 46px; border-bottom: 1px solid var(--trait); }
 .chapitre:last-of-type { border-bottom: 0; }
-.chapitre h2 .num { display: inline-block; min-width: 2.2em; margin-right: .5em; padding-right: .5em; border-right: 1px solid var(--trait); color: var(--sang-vif); font-weight: 600; }
+.chapitre h2 .num { display: inline-block; min-width: 2.2em; margin-right: .5em; padding-right: .5em; border-right: 1px solid var(--trait); color: var(--sang-texte); font-weight: 600; }
 .chapitre h2 { font-size: clamp(1.45rem, 3vw, 1.9rem); margin-bottom: 20px; }
 .chapitre p { font-size: 1.2rem; line-height: 1.72; }
 .chapitre .lien-fleche { display: inline-block; margin-top: 4px; }
@@ -450,11 +450,11 @@ main { display: block; min-height: 70vh; outline: none; }
 .dossier .chapitre p { font-family: var(--machine); font-size: 1.04rem; line-height: 1.85; color: #DCD2BE; }
 .dossier .chapitre h2 { font-family: var(--machine); font-weight: 400; letter-spacing: 0; }
 .dossier .ecriture { border-color: rgb(198 42 32 / .5); background: rgb(198 42 32 / .05); }
-.dossier .ecriture .source { color: var(--sang-vif); font-style: normal; font-family: var(--machine); }
+.dossier .ecriture .source { color: var(--sang-texte); font-style: normal; font-family: var(--machine); }
 .dossier .ecriture p:last-child { font: 400 1.04rem/1.85 var(--machine); color: #DCD2BE; }
 .tampon {
   display: inline-block; margin: 0 0 26px; padding: 6px 14px;
-  border: 2px solid var(--sang-vif); color: var(--sang-vif);
+  border: 2px solid var(--sang-vif); color: var(--sang-texte);
   font: 400 1rem/1 var(--machine); letter-spacing: .2em; transform: rotate(-3deg);
 }
 .scelle p { color: var(--cendre) !important; }
@@ -479,7 +479,7 @@ main { display: block; min-height: 70vh; outline: none; }
 .est-perdue .vitrine svg * { stroke: rgb(239 230 210 / .28); }
 .reliquaire h2 { font-size: 1.2rem; margin-bottom: 8px; }
 .statut { font-style: italic; color: var(--or); }
-.est-perdue .statut { color: var(--sang-vif); }
+.est-perdue .statut { color: var(--sang-texte); }
 .relique-detail { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, var(--lecture)); gap: clamp(28px, 6vw, 80px); align-items: start; }
 .relique-detail .vitrine { width: 100%; max-width: 280px; height: auto; aspect-ratio: 1; }
 .relique-detail .vitrine svg { width: 62%; height: 62%; }
@@ -489,7 +489,7 @@ main { display: block; min-height: 70vh; outline: none; }
 .guerres { display: grid; gap: 1px; background: var(--trait); border: 1px solid var(--trait); }
 .guerre { background: var(--nuit); display: grid; grid-template-columns: 11rem minmax(0, 1fr) auto; gap: clamp(18px, 4vw, 48px); align-items: center; padding: clamp(24px, 4vw, 40px); text-decoration: none; transition: background-color .25s; }
 .guerre:hover { background: var(--nuit-2); }
-.guerre .rang-guerre { font: 600 .82rem/1.3 var(--titre); letter-spacing: .12em; color: var(--sang-vif); }
+.guerre .rang-guerre { font: 600 .82rem/1.3 var(--titre); letter-spacing: .12em; color: var(--sang-texte); }
 .guerre h2 { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 10px; }
 .guerre p { margin: 0; color: var(--cendre); max-width: 40rem; }
 .guerre .bilan { display: block; margin-top: 14px; font-style: italic; color: var(--or); }
@@ -514,14 +514,14 @@ main { display: block; min-height: 70vh; outline: none; }
 .code-corps { display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
 .code-sections { position: sticky; top: calc(var(--entete) + 24px); list-style: none; margin: 0; padding: 0; }
 .code-sections button { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); width: 100%; padding: 7px 0; text-align: left; background: none; border: 0; color: var(--cendre); font-size: 1.02rem; line-height: 1.35; }
-.code-sections button span:first-child { font: 600 .78rem/1.8 var(--titre); color: var(--sang-vif); }
+.code-sections button span:first-child { font: 600 .78rem/1.8 var(--titre); color: var(--sang-texte); }
 .code-sections button:hover { color: var(--lumiere); }
 .preambule { padding: 26px 28px; border: 1px solid rgb(207 165 76 / .35); background: rgb(207 165 76 / .05); margin-bottom: 52px; }
 .preambule h2 { font-size: 1.15rem; margin-bottom: 12px; color: var(--or); }
 .preambule p:last-child { margin: 0; }
 .section-code { margin-bottom: 56px; }
 .section-code header { display: flex; align-items: baseline; gap: 18px; margin-bottom: 20px; }
-.section-code header .num { font: 600 1.6rem/1 var(--titre); color: var(--sang-vif); }
+.section-code header .num { font: 600 1.6rem/1 var(--titre); color: var(--sang-texte); }
 .section-code h2 { font-size: 1.5rem; }
 .section-code header small { margin-left: auto; color: var(--cendre); font-style: italic; font-size: 1rem; white-space: nowrap; }
 .regles { list-style: none; margin: 0; padding: 0; }
@@ -548,7 +548,7 @@ main { display: block; min-height: 70vh; outline: none; }
 .rejoindre p { color: var(--cendre); }
 .univers { list-style: none; margin: 24px 0 18px; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .univers a { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 58px; padding: 0 18px; border: 1px solid rgb(239 230 210 / .2); text-decoration: none; font: 600 .9rem/1 var(--titre); letter-spacing: .08em; transition: border-color .2s, background-color .2s; }
-.univers a:hover, .univers a:focus-visible { border-color: var(--sang-vif); background: rgb(198 42 32 / .1); }
+.univers a:hover, .univers a:focus-visible { border-color: var(--sang-texte); background: rgb(198 42 32 / .1); }
 .univers a.choisi { border-color: var(--lumiere); }
 .univers small { font: italic 400 .9rem/1 var(--texte); letter-spacing: 0; color: var(--cendre); }
 .rejoindre .petit { font-size: .98rem; margin: 0; }
@@ -602,7 +602,6 @@ main { display: block; min-height: 70vh; outline: none; }
   .pied .cadre > div:first-child { grid-column: 1 / -1; }
 }
 @media (max-width: 600px) {
-  .passage-passer { top: 12px; bottom: auto; }
   body { font-size: 1.1rem; }
   :root { --entete: 58px; }
   .passage-depart h1 { font-size: clamp(2.3rem, 11vw, 3rem); }
@@ -646,4 +645,69 @@ main { display: block; min-height: 70vh; outline: none; }
 /* Mouvement réduit : rien ne disparaît, tout est affiché directement. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ---------- Cibles tactiles : la zone cliquable déborde du dessin ---------- */
+.lien-fleche, .retour { position: relative; }
+.lien-fleche::after { content: ''; position: absolute; inset: -12px -6px; }
+.retour::after { content: ''; position: absolute; inset: -16px -8px; }
+.sommaire summary { min-height: 44px; display: flex; align-items: center; padding: 0; margin-bottom: 4px; }
+.sommaire a { min-height: 44px; align-items: center; }
+.marque { min-height: 44px; }
+.pied li a { padding: 10px 0; }
+.choix-univers button { min-height: 44px; }
+
+/* ---------- Rejoindre : choisir l'univers, puis le lien ---------- */
+.choix-aide { max-width: 32rem; margin: 0 auto 18px; font-size: 1.05rem; color: var(--cendre); }
+.rejoindre .choix-titre { margin: 22px 0 8px; }
+.rejoindre .choix-aide { margin: 0 0 16px; }
+.rejoindre .plaques { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 0 20px; }
+.rejoindre .actions { margin-bottom: 22px; }
+.rejoindre .actions .bouton { width: 100%; }
+.rejoindre-bloc { margin-top: 34px; }
+
+/* Les engagements, gravés comme une inscription sous l'arrivée */
+.inscription { list-style: none; margin: 28px auto 0; padding: 18px 0; max-width: 54rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px;
+  border-block: 1px solid rgb(207 165 76 / .3); font-size: 1.08rem; color: var(--cendre); }
+.inscription li { display: block; }
+.inscription li + li::before { content: ''; display: inline-block; width: 9px; height: 8px; margin-right: 24px; background: var(--or); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+@media (max-width: 600px) {
+  .inscription { flex-direction: column; gap: 10px; }
+  .inscription li + li::before { display: none; }
+}
+.inscription strong { margin-right: .35em; font: 600 .95rem/1.2 var(--titre); letter-spacing: .06em; color: var(--ivoire); }
+
+/* ---------- Le grand triangle : un côté par précepte ---------- */
+.triade-corps { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(28px, 6vw, 80px); align-items: center; }
+.triade-figure { position: relative; aspect-ratio: 600 / 540; max-width: 560px; width: 100%; margin: 0 auto; }
+.triade-figure svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.triade-cote { fill: none; stroke: rgb(239 230 210 / .28); stroke-width: 2.5; stroke-linecap: round; transition: stroke .35s cubic-bezier(.2, .7, .2, 1), stroke-width .35s cubic-bezier(.2, .7, .2, 1); }
+.triade-cote.actif { stroke: var(--sang-vif); stroke-width: 5; filter: drop-shadow(0 0 10px rgb(224 57 44 / .55)); }
+.triade-blason { position: absolute; left: 50%; top: 63%; width: 22%; transform: translate(-50%, -50%); }
+.triade-bouton {
+  position: absolute; min-height: 44px; padding: 0 16px; background: var(--nuit); border: 1px solid rgb(239 230 210 / .25); white-space: nowrap;
+  font: 600 .92rem/1 var(--titre); letter-spacing: .14em; color: var(--cendre); transition: color .25s, border-color .25s, background-color .25s;
+}
+.triade-bouton:hover { color: var(--lumiere); border-color: var(--lumiere); }
+.triade-bouton[aria-pressed='true'] { color: #fff; background: var(--sang); border-color: var(--sang-vif); }
+.triade-bouton-0 { left: 28.3%; top: 49%; transform: translate(-50%, -50%) rotate(-60deg); }
+.triade-bouton-1 { left: 71.7%; top: 49%; transform: translate(-50%, -50%) rotate(60deg); }
+.triade-bouton-2 { left: 50%; top: 90.7%; transform: translate(-50%, -50%); }
+.triade-texte h3 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
+.triade-texte .sous { margin: 8px 0 18px; font-style: italic; font-size: 1.15rem; color: var(--or); }
+.triade-texte p:last-child { margin: 0; font-size: 1.2rem; line-height: 1.6; color: var(--ivoire); max-width: 32rem; }
+@media (max-width: 900px) {
+  .triade-corps { grid-template-columns: 1fr; }
+  .triade-figure { max-width: 420px; }
+  .triade-bouton { font-size: .78rem; padding: 0 12px; letter-spacing: .1em; }
+}
+
+/* La fin de l'accueil : les trois pas, puis le dernier geste */
+.dernier-pas .actions { justify-content: center; margin-top: clamp(40px, 6vw, 64px); }
+.voix-liste .num .compte { margin-left: 12px; padding-left: 12px; border-left: 1px solid var(--trait); color: var(--cendre); font-weight: 500; }
+
+/* ---------- Passage : on voit où on en est, et on peut toujours passer ---------- */
+.passage-ecran::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; z-index: 3; background: var(--or); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); opacity: .8; }
+@media (max-width: 600px) {
+  .passage-indice span { display: none; }
 }

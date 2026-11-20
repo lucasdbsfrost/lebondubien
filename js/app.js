@@ -115,6 +115,31 @@
     </section>`;
   }
 
+  function rejoindreBloc() {
+    return h`<div class="rejoindre-bloc">
+      <h3 class="choix-titre">Choisissez votre univers</h3>
+      <p class="choix-aide">Le bouton vous mène au serveur Discord du jeu où vous jouez. Pas de jeu en particulier ? Prenez Neutre.</p>
+      <div class="plaques" role="group" aria-label="Choisir l'univers" data-plaques></div>
+      <div class="actions"><a class="bouton bouton-sang" data-lien-univers target="_blank" rel="noopener noreferrer" href="${L.univers[0].lien}"><span>Rejoindre l'Éveil<span data-nom-univers></span></span></a></div>
+    </div>`;
+  }
+
+  // Le grand triangle : chaque côté est un précepte ; on choisit un côté pour lire son texte.
+  function brancherTriade() {
+    var bloc = main.querySelector('.triade');
+    if (!bloc) return;
+    function choisir(i) {
+      bloc.querySelectorAll('.triade-bouton').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-cote') === String(i) ? 'true' : 'false'); });
+      bloc.querySelectorAll('.triade-cote').forEach(function (c) { c.classList.toggle('actif', c.getAttribute('data-cote') === String(i)); });
+      bloc.querySelectorAll('.triade-texte').forEach(function (t, k) { t.hidden = k !== i; });
+    }
+    bloc.addEventListener('click', function (e) {
+      var b = e.target.closest('.triade-bouton');
+      if (b) choisir(+b.getAttribute('data-cote'));
+    });
+    choisir(0);
+  }
+
   function vueAccueil() {
     var A = L.accueil;
     var cotes = ['Pacem', 'Felicitatem', 'Singularitatem'];
@@ -133,29 +158,35 @@
       <section class="appel arrivee" id="arrivee" aria-labelledby="titre-appel"><div class="cadre">
         <h2 id="titre-appel">${A.appel.titre}</h2>
         <p>${A.appel.texte}</p>
-        <h3 class="choix-titre">Choisissez votre univers</h3>
-        <div class="plaques" role="group" aria-label="Choisir l'univers" data-plaques></div>
-        <div class="actions"><a class="bouton bouton-sang" data-lien-univers target="_blank" rel="noopener noreferrer" href="${L.univers[0].lien}">Rejoindre l'Éveil</a></div>
+        <ul class="inscription" aria-label="Nos engagements">
+          ${A.engagements.map(function (e) { return h`<li><strong>${e.titre}</strong> : ${e.texte}</li>`; })}
+        </ul>
+        ${rejoindreBloc()}
         <p class="serment">${A.appel.serment}</p>
       </div></section>
 
-      <div class="cadre"><div class="engagements">
-        ${A.engagements.map(function (e) { return h`<div><h2>${e.titre}</h2><p>${e.texte}</p></div>`; })}
-      </div></div>
-
-      <section class="bloc"><div class="cadre">
-        <h2 class="bloc-titre">Trois côtés d'une même foi</h2>
-        <div class="cotes">
-          ${A.cotes.map(function (c, i) { return h`<article class="cote">${triangleCote(i)}<h3>${c.titre}</h3><p class="sous">${c.sous}</p><p>${c.texte}</p></article>`; })}
+      <section class="bloc triade" aria-labelledby="titre-triade"><div class="cadre">
+        <h2 class="bloc-titre" id="titre-triade">Trois côtés d'une même foi</h2>
+        <div class="triade-corps">
+          <div class="triade-figure">
+            <svg viewBox="0 0 600 540" aria-hidden="true">
+              <defs><radialGradient id="triade-lueur" cx="50%" cy="62%" r="55%"><stop offset="0" stop-color="#FFF4DA" stop-opacity=".16"/><stop offset="1" stop-color="#FFF4DA" stop-opacity="0"/></radialGradient></defs>
+              <polygon points="300,40 560,490 40,490" fill="url(#triade-lueur)"/>
+              <path class="triade-cote" data-cote="0" d="M40 490 300 40"/>
+              <path class="triade-cote" data-cote="1" d="M300 40 560 490"/>
+              <path class="triade-cote" data-cote="2" d="M560 490H40"/>
+            </svg>
+            ${image('blason', '', 'triade-blason')}
+            ${A.cotes.map(function (c, i) {
+              return h`<button type="button" class="triade-bouton triade-bouton-${i}" data-cote="${i}" aria-pressed="${i === 0 ? 'true' : 'false'}" aria-controls="triade-${i}" lang="la">${cotes[i]}</button>`;
+            })}
+          </div>
+          <div class="triade-textes">
+            ${A.cotes.map(function (c, i) {
+              return h`<article class="triade-texte" id="triade-${i}" ${i ? brut('hidden') : ''}><h3>${c.titre}</h3><p class="sous">${c.sous}</p><p>${c.texte}</p></article>`;
+            })}
+          </div>
         </div>
-      </div></section>
-
-      <section class="bloc"><div class="cadre">
-        <h2 class="bloc-titre">Trois pas vers le refuge</h2>
-        <p class="bloc-sous">Les conditions de l'Éveil.</p>
-        <ol class="pas">
-          ${A.pas.map(function (p, i) { return h`<li><span class="num" aria-hidden="true">${ROMAINS[i]}</span><h3>${p.titre}</h3><p>${p.texte}</p></li>`; })}
-        </ol>
       </div></section>
 
       <section class="bloc"><div class="cadre">
@@ -166,10 +197,20 @@
             return h`<li><a href="#/apotres/${a.id}"><span class="num">${a.num}</span><q>${a.citation}</q><span class="qui">${a.nom}<span>${a.titre}</span></span></a></li>`;
           })}
         </ul>
+      </div></section>
+
+      <section class="bloc dernier-pas"><div class="cadre">
+        <h2 class="bloc-titre">Trois pas vers le refuge</h2>
+        <p class="bloc-sous">Les conditions de l'Éveil.</p>
+        <ol class="pas">
+          ${A.pas.map(function (p, i) { return h`<li><span class="num" aria-hidden="true">${ROMAINS[i]}</span><h3>${p.titre}</h3><p>${p.texte}</p></li>`; })}
+        </ol>
+        <div class="actions"><button class="bouton bouton-sang" type="button" data-rejoindre>Rejoindre l'Éveil</button></div>
       </div></section>`,
       apres: function () {
         lancerBraises(main.querySelector('.braises'));
         dessinerUnivers();
+        brancherTriade();
       },
     };
   }
@@ -348,7 +389,7 @@
         <h2 class="bloc-titre">Les Vies des Apôtres</h2>
         <ul class="voix-liste">
           ${L.apotres.map(function (a) {
-            return h`<li><a href="#/apotres/${a.id}"><span class="num">${a.num} · ${a.chapitres.length} chapitres</span><q>${a.citation}</q><span class="qui">${a.nom}<span>${a.titre}</span></span></a></li>`;
+            return h`<li><a href="#/apotres/${a.id}"><span class="num">${a.num}<span class="compte">${a.chapitres.length} chapitres</span></span><q>${a.citation}</q><span class="qui">${a.nom}<span>${a.titre}</span></span></a></li>`;
           })}
         </ul>
       </div></section>`,
@@ -368,7 +409,7 @@
       <div class="progression" aria-hidden="true"></div>
       <header class="page-tete"><div class="cadre">
         <a class="retour" href="#/apotres">${chevron}Remettre au rayon</a>
-        ${a.dossier ? h`<p class="tampon">Dossier classifié · Bureau</p>` : ''}
+        ${a.dossier ? h`<p class="tampon">Dossier classifié</p>` : ''}
         <div class="vie-tete">
           <span class="vie-num" aria-hidden="true">${a.num}</span>
           <div>
@@ -594,6 +635,12 @@
   }
 
   var dernierChemin = null;
+  var lieuxVus = {};               // les entrées déjà parcourues pendant cette visite
+  try { lieuxVus = JSON.parse(sessionStorage.getItem('lbdb-lieux') || '{}') || {}; } catch (err) { lieuxVus = {}; }
+  function lieuVu(nom) {
+    lieuxVus[nom] = true;
+    try { sessionStorage.setItem('lbdb-lieux', JSON.stringify(lieuxVus)); } catch (err) { /* sans stockage */ }
+  }
 
   function afficher() {
     var adresse = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
@@ -633,7 +680,12 @@
         if (titre) titre.focus({ preventScroll: true });
       }
     } else if (!memeSection) {
-      window.scrollTo(0, 0);
+      // Déjà parcourue pendant cette visite : la page s'ouvre directement à l'arrivée.
+      var nomLieu = passageEl && passageEl.getAttribute('data-passage');
+      var arriveeEl = main.querySelector('#arrivee');
+      if (nomLieu && lieuxVus[nomLieu] && arriveeEl) window.scrollTo(0, arriveeEl.getBoundingClientRect().top + window.scrollY - 40);
+      else window.scrollTo(0, 0);
+      if (nomLieu) lieuVu(nomLieu);
       var h1 = main.querySelector('h1');
       if (h1 && dernierChemin !== '' && document.readyState === 'complete') h1.focus({ preventScroll: true });
     }
@@ -703,17 +755,23 @@
     try { localStorage.setItem(CLE_UNIVERS, JSON.stringify(id)); } catch (err) { /* sans stockage */ }
     dessinerUnivers();
   }
+  // Les plaques sont dessinées une fois, puis seulement mises à jour : le focus clavier reste en place.
   function dessinerUnivers() {
     var choisi = universChoisi();
-    document.querySelector('[data-liste-univers]').innerHTML = L.univers.map(function (u) {
-      return h`<li><a href="${u.lien}" target="_blank" rel="noopener noreferrer" data-univers="${u.id}" class="${u.id === choisi ? 'choisi' : ''}">${u.nom}<small>${u.id === choisi ? 'votre univers' : 'Discord'}</small></a></li>`.s;
-    }).join('');
-    var boutons = L.univers.map(function (u) {
-      return h`<button type="button" data-choisir="${u.id}" aria-pressed="${u.id === choisi ? 'true' : 'false'}">${u.nom}</button>`.s;
-    }).join('');
-    document.querySelectorAll('[data-choix-univers], [data-plaques]').forEach(function (el) { el.innerHTML = boutons; });
-    var lien = L.univers.filter(function (u) { return u.id === choisi; })[0].lien;
-    document.querySelectorAll('[data-lien-univers]').forEach(function (a) { a.href = lien; });
+    var u0 = L.univers.filter(function (u) { return u.id === choisi; })[0];
+    document.querySelectorAll('[data-choix-univers], [data-plaques]').forEach(function (el) {
+      if (!el.firstElementChild) {
+        el.innerHTML = L.univers.map(function (u) {
+          return h`<button type="button" data-choisir="${u.id}" aria-pressed="false">${u.nom}</button>`.s;
+        }).join('');
+      }
+      el.querySelectorAll('[data-choisir]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-choisir') === choisi ? 'true' : 'false'); });
+    });
+    document.querySelectorAll('[data-lien-univers]').forEach(function (a) {
+      a.href = u0.lien;
+      var nom = a.querySelector('[data-nom-univers]');
+      if (nom) nom.textContent = u0.id === 'neutre' ? '' : ' sur ' + u0.nom;
+    });
   }
   var dialogue = document.getElementById('rejoindre');
   document.addEventListener('click', function (e) {
@@ -725,8 +783,7 @@
     }
     var choix = e.target.closest('[data-choisir]');
     if (choix) { retenirUnivers(choix.getAttribute('data-choisir')); return; }
-    var lien = e.target.closest('[data-univers]');
-    if (lien) { retenirUnivers(lien.getAttribute('data-univers')); setTimeout(function () { dialogue.close(); }, 0); }
+    if (e.target.closest('#rejoindre [data-lien-univers]')) setTimeout(function () { dialogue.close(); }, 0);
   });
   dialogue.querySelector('[data-fermer]').addEventListener('click', function () { dialogue.close(); });
   dialogue.addEventListener('click', function (e) { if (e.target === dialogue) dialogue.close(); });
