@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="only dark">
+  <meta name="theme-color" content="#121011">
+  <title>Le Bon du Bien</title>
+  <meta name="description" content="Le monde s'est brisé : pas nous. Le Bon du Bien accueille chacun, protège les siens et garde la Lumière allumée. Venez tel que vous êtes.">
+  <meta property="og:title" content="Le Bon du Bien">
+  <meta property="og:description" content="Trouvez refuge. Rejoignez l’Éveil. Une foi qui accueille chacun et ne combat que la haine.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="evitement" href="#contenu" data-evitement>Aller au contenu</a>
+
+  <header class="entete">
+    <div class="cadre">
+      <a class="marque" href="#/" aria-label="Le Bon du Bien, accueil">
+        <svg viewBox="0 0 26 24" aria-hidden="true"><path d="M13 2.5 24 21.5H2Z" fill="none" stroke="#E0392C" stroke-width="1.8" stroke-linejoin="round"/><path d="M13 9.5 18 18H8Z" fill="#FFF4DA"/></svg>
+        Le Bon du Bien
+      </a>
+      <nav class="nav" aria-label="Navigation principale">
+        <ul class="nav-liens" id="menu">
+          <li><a href="#/foi" data-section="foi">La Foi</a></li>
+          <li><a href="#/origines" data-section="origines">Les Origines</a></li>
+          <li><a href="#/branches" data-section="branches">Les Branches</a></li>
+          <li><a href="#/apotres" data-section="apotres">Les Apôtres</a></li>
+          <li><a href="#/reliques" data-section="reliques">Les Reliques</a></li>
+          <li><a href="#/chroniques" data-section="chroniques">Les Chroniques</a></li>
+          <li><a href="#/code" data-section="code">Le Code</a></li>
+          <li class="nav-rejoindre"><button class="bouton bouton-sang" type="button" data-rejoindre>Rejoindre l'Éveil</button></li>
+        </ul>
+        <button class="bouton bouton-sang" type="button" data-rejoindre>Rejoindre l'Éveil</button>
+        <button class="menu-bouton" type="button" aria-controls="menu" aria-expanded="false" aria-label="Ouvrir le menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" tabindex="-1">
+    <noscript>
+      <div class="cadre page-tete">
+        <h1>Le Bon du Bien</h1>
+        <p class="chapeau">Ce site a besoin de JavaScript pour afficher ses pages. Activez-le dans votre navigateur, ou rejoignez-nous directement sur <a href="https://discord.gg/9sN8J43g4K">Discord</a>.</p>
+      </div>
+    </noscript>
+  </main>
+
+  <footer class="pied">
+    <div class="cadre">
+      <div>
+        <h2>Le Bon du Bien</h2>
+        <p class="devise">« Pacem, Felicitatem, Singularitatem »</p>
+        <p data-pied-texte></p>
+        <button class="bouton bouton-sang" type="button" data-rejoindre>Rejoindre l'Éveil</button>
+      </div>
+      <div>
+        <h2>La foi</h2>
+        <ul>
+          <li><a href="#/foi">La Foi</a></li>
+          <li><a href="#/origines">Les Origines</a></li>
+          <li><a href="#/branches">Les Branches</a></li>
+          <li><a href="#/apotres">Les Apôtres</a></li>
+          <li><a href="#/reliques">Les Reliques</a></li>
+          <li><a href="#/chroniques">Les Chroniques</a></li>
+          <li><a href="#/code">Le Code</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Votre univers</h2>
+        <p>Choisissez l'univers où vous jouez : le bouton « Rejoindre l'Éveil » vous mènera vers son serveur Discord.</p>
+        <div class="choix-univers" role="group" aria-label="Choisir l'univers" data-choix-univers></div>
+      </div>
+      <p class="bas"><span>Dans un monde brisé, une foi qui accueille chacun.</span><span>Nous ne combattons que la haine.</span></p>
+    </div>
+  </footer>
+
+  <dialog class="rejoindre" id="rejoindre" aria-labelledby="rejoindre-titre">
+    <div class="rejoindre-corps">
+      <button class="fermer" type="button" data-fermer aria-label="Fermer">×</button>
+      <svg class="mini" viewBox="0 0 26 24" aria-hidden="true"><path d="M13 2.5 24 21.5H2Z" fill="none" stroke="#E0392C" stroke-width="1.6" stroke-linejoin="round"/><path d="M13 9.5 18 18H8Z" fill="#FFF4DA"/></svg>
+      <h2 id="rejoindre-titre">Rejoindre l'Éveil</h2>
+      <p>Nul besoin de renier votre passé. Choisissez l'univers où vous jouez : vous rejoindrez son serveur Discord.</p>
+      <ul class="univers" data-liste-univers></ul>
+      <p class="petit">Déposer la haine au seuil. Protéger plus faible que soi. Garder le serment. Le reste s'apprend auprès des Éveillés.</p>
+    </div>
+  </dialog>
+
+  <script src="data/site.js"></script>
+  <script src="data/code.js"></script>
+  <script src="data/apotres.js"></script>
+  <script src="data/chroniques.js"></script>
+  <script src="js/passages.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

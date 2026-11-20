@@ -1,0 +1,646 @@
+/*
+ * Le Bon du Bien : feuille de style.
+ * Les trois couleurs de la foi : le Noir (le Mal que l'on combat), le Rouge
+ * (la Force), le Blanc (la Lumière). L'or est réservé au sacré : les reliques.
+ * Le site est sombre uniquement : « only dark » empêche les navigateurs
+ * intégrés (Instagram, etc.) de le recolorer de force.
+ */
+
+@font-face { font-family: 'Cinzel'; font-style: normal; font-display: swap; font-weight: 400 900;
+  src: url('../fonts/cinzel-latin-wght-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Cinzel'; font-style: normal; font-display: swap; font-weight: 400 900;
+  src: url('../fonts/cinzel-latin-ext-wght-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'EB Garamond'; font-style: normal; font-display: swap; font-weight: 400 800;
+  src: url('../fonts/eb-garamond-latin-wght-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'EB Garamond'; font-style: normal; font-display: swap; font-weight: 400 800;
+  src: url('../fonts/eb-garamond-latin-ext-wght-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'EB Garamond'; font-style: italic; font-display: swap; font-weight: 400 800;
+  src: url('../fonts/eb-garamond-latin-wght-italic.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'EB Garamond'; font-style: italic; font-display: swap; font-weight: 400 800;
+  src: url('../fonts/eb-garamond-latin-ext-wght-italic.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Special Elite'; font-style: normal; font-display: swap; font-weight: 400;
+  src: url('../fonts/special-elite-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Special Elite'; font-style: normal; font-display: swap; font-weight: 400;
+  src: url('../fonts/special-elite-latin-ext-400-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+1D00-1DBF, U+1E00-1E9F; }
+
+:root {
+  color-scheme: dark;
+  color-scheme: only dark;
+  --nuit: #121011;          /* le Noir : fond */
+  --nuit-2: #1A1718;        /* surfaces */
+  --nuit-3: #241F20;
+  --ivoire: #EFE6D2;        /* texte */
+  --cendre: #A69B88;        /* texte secondaire */
+  --trait: rgb(239 230 210 / .14);
+  --sang: #C62A20;          /* le Rouge du blason */
+  --sang-vif: #E0392C;
+  --sang-sombre: #5E140F;
+  --lumiere: #FFF4DA;       /* le Blanc : la Lumière */
+  --or: #CFA54C;            /* le sacré */
+  --bleu: #7C9BD0;          /* les robes bleues du Clergé */
+  --titre: 'Cinzel', 'Trajan Pro', Georgia, serif;
+  --texte: 'EB Garamond', Garamond, Georgia, serif;
+  --machine: 'Special Elite', 'Courier New', monospace;
+  --large: 1180px;
+  --lecture: 42rem;
+  --marge: clamp(18px, 5vw, 56px);
+  --entete: 64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--entete) + 16px); }
+body {
+  margin: 0; min-height: 100vh;
+  background: var(--nuit); color: var(--ivoire);
+  font: 400 1.15rem/1.65 var(--texte);
+  font-kerning: normal; font-variant-ligatures: common-ligatures;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+h1, h2, h3, h4 { font-family: var(--titre); font-weight: 600; line-height: 1.15; margin: 0; letter-spacing: .01em; }
+p { margin: 0 0 1em; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--lumiere); outline-offset: 3px; border-radius: 2px; }
+[tabindex='-1']:focus { outline: none; }
+::selection { background: var(--sang); color: var(--lumiere); }
+
+.ecran-lecteur { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.evitement { position: fixed; left: 12px; top: -80px; z-index: 100; padding: 10px 16px; background: var(--lumiere); color: var(--nuit); font-weight: 600; }
+.evitement:focus { top: 12px; }
+
+.cadre { width: 100%; max-width: var(--large); margin: 0 auto; padding: 0 var(--marge); }
+.lecture { max-width: var(--lecture); }
+
+/* ---------- Boutons ---------- */
+.bouton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 50px; padding: 0 26px;
+  font: 600 .86rem/1 var(--titre); letter-spacing: .12em;
+  text-decoration: none; border: 1px solid transparent; border-radius: 2px;
+  transition: background-color .2s, border-color .2s, color .2s, box-shadow .2s;
+}
+.bouton-sang { background: var(--sang); color: var(--lumiere); box-shadow: 0 0 0 0 rgb(198 42 32 / 0); }
+.bouton-sang:hover { background: var(--sang-vif); box-shadow: 0 0 32px rgb(224 57 44 / .35); }
+.bouton-trait { border-color: rgb(239 230 210 / .35); background: transparent; }
+.bouton-trait:hover { border-color: var(--lumiere); background: rgb(255 244 218 / .05); }
+.lien-fleche { font: 600 .82rem/1.2 var(--titre); letter-spacing: .1em; color: var(--lumiere); text-decoration: none; border-bottom: 1px solid var(--sang); padding-bottom: 4px; }
+.lien-fleche:hover { border-color: var(--lumiere); }
+
+/* ---------- En-tête (opaque : le texte ne passe jamais dessous) ---------- */
+.entete {
+  position: sticky; top: 0; z-index: 50;
+  height: var(--entete);
+  background: var(--nuit);
+  border-bottom: 1px solid var(--trait);
+}
+.entete .cadre { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.marque { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font: 600 1rem/1 var(--titre); letter-spacing: .14em; white-space: nowrap; }
+.marque svg { width: 26px; height: 24px; flex: none; }
+.nav { display: flex; align-items: center; gap: clamp(12px, 1.6vw, 24px); }
+.nav-liens { display: flex; gap: clamp(10px, 1.4vw, 22px); list-style: none; margin: 0; padding: 0; }
+.nav-liens a {
+  display: block; padding: 8px 0; text-decoration: none; white-space: nowrap;
+  font: 500 .78rem/1 var(--titre); letter-spacing: .08em; color: var(--cendre);
+  border-bottom: 1px solid transparent; transition: color .2s, border-color .2s;
+}
+.nav-liens a:hover { color: var(--ivoire); }
+.nav-liens a[aria-current='page'] { color: var(--lumiere); border-bottom-color: var(--sang); }
+.nav .bouton { min-height: 40px; padding: 0 18px; font-size: .74rem; white-space: nowrap; }
+.menu-bouton { display: none; width: 44px; height: 44px; background: none; border: 0; padding: 10px; }
+.menu-bouton span { display: block; height: 1.5px; background: var(--ivoire); margin: 6px 0; transition: transform .25s, opacity .25s; }
+.menu-bouton[aria-expanded='true'] span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.menu-bouton[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+.menu-bouton[aria-expanded='true'] span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+@media (max-width: 1180px) {
+  .menu-bouton { display: block; }
+  .nav .bouton { display: none; }
+  .nav-liens {
+    position: fixed; inset: var(--entete) 0 0 0; z-index: 49;
+    flex-direction: column; gap: 0; padding: 12px var(--marge) 32px;
+    background: var(--nuit); overflow-y: auto; overscroll-behavior: contain;
+    visibility: hidden; opacity: 0; transition: opacity .2s, visibility .2s;
+  }
+  .menu-ouvert .nav-liens { visibility: visible; opacity: 1; }
+  .nav-liens a { padding: 18px 0; font-size: 1.05rem; color: var(--ivoire); border-bottom: 1px solid var(--trait); }
+  .nav-liens a[aria-current='page'] { border-bottom-color: var(--trait); color: var(--sang-vif); }
+  .nav-liens .nav-rejoindre { display: block; }
+  .nav-liens .nav-rejoindre .bouton { display: flex; width: 100%; margin-top: 24px; }
+}
+.nav-liens .nav-rejoindre { display: none; }
+
+/* ---------- Structure des pages ---------- */
+main { display: block; min-height: 70vh; outline: none; }
+.page-tete { padding: clamp(56px, 9vw, 112px) 0 clamp(36px, 5vw, 56px); }
+.page-tete .surtitre { margin: 0 0 18px; font: italic 500 1.15rem/1 var(--texte); color: var(--sang-vif); }
+.page-tete h1 { font-size: clamp(2.3rem, 6vw, 4.4rem); font-weight: 600; max-width: 18ch; }
+.page-tete .chapeau { margin-top: 24px; max-width: 38rem; font-size: 1.3rem; line-height: 1.5; color: var(--cendre); }
+.retour { display: inline-block; margin-bottom: 26px; font: 500 .8rem/1 var(--titre); letter-spacing: .1em; color: var(--cendre); text-decoration: none; }
+.retour:hover { color: var(--lumiere); }
+.bloc { padding: clamp(48px, 8vw, 104px) 0; }
+.bloc + .bloc { border-top: 1px solid var(--trait); }
+.bloc-titre { font-size: clamp(1.7rem, 3.6vw, 2.6rem); margin-bottom: clamp(24px, 4vw, 44px); max-width: 22ch; }
+.bloc-sous { margin: -24px 0 36px; color: var(--cendre); max-width: 36rem; font-size: 1.2rem; }
+.prose p { max-width: var(--lecture); }
+.prose p:first-child::first-letter { }
+
+.devise { font: italic 400 1.25rem/1.4 var(--texte); color: var(--or); }
+.citation { margin: 0; padding: 0; border: 0; }
+.citation p { font: italic 400 clamp(1.35rem, 2.6vw, 1.75rem)/1.45 var(--texte); color: var(--lumiere); margin: 0 0 12px; max-width: 34ch; }
+.citation footer { font: 500 .78rem/1.4 var(--titre); letter-spacing: .1em; color: var(--cendre); }
+
+/* ---------- Les passages : on avance au défilement jusqu'au lieu ---------- */
+.passage { position: relative; height: calc(var(--longueur) * 1vh); height: calc(var(--longueur) * 1svh); background: #0B0909; overflow-x: clip; }
+.passage-ecran {
+  position: sticky; top: var(--entete); overflow: hidden;
+  height: calc(100vh - var(--entete)); height: calc(100svh - var(--entete));
+}
+.passage-scene {
+  position: absolute; inset: 0; overflow: hidden; contain: strict;
+  background: radial-gradient(ellipse 55% 45% at 50% 55%, #2A1D17, #0B0909 72%);
+}
+.pg-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.pg-svg { position: absolute; inset: 0; display: block; }
+.pg-voile { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 80% 75% at 50% 52%, transparent 45%, rgb(6 4 4 / .78)); }
+.pg-grave { font-family: var(--titre); font-weight: 700; fill: #E9CB7E; }
+.pg-encre { font-family: var(--titre); font-weight: 700; fill: #3A1A10; }
+
+.passage-ecran .braises { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: calc(1 - var(--p, 0) * 1.4); }
+.passage-indice {
+  position: absolute; left: 50%; bottom: 22px; margin: 0; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  font: italic 500 1rem/1 var(--texte); color: var(--ivoire);
+  opacity: clamp(0, calc(1 - var(--p, 0) * 14), 1); pointer-events: none;
+}
+.passage-indice svg { width: 22px; height: 22px; fill: none; stroke: var(--or); stroke-width: 2; animation: inviter 1.8s ease-in-out infinite; }
+@keyframes inviter { 50% { transform: translateY(5px); } }
+.passage-passer {
+  position: absolute; right: var(--marge); bottom: 18px; z-index: 3;
+  min-height: 40px; padding: 0 16px; border: 1px solid rgb(239 230 210 / .25); background: rgb(11 9 9 / .6);
+  font: 600 .72rem/1 var(--titre); letter-spacing: .1em; color: var(--cendre);
+  opacity: clamp(0, calc((.9 - var(--p, 0)) * 10), 1);
+}
+.passage-passer:hover { color: var(--lumiere); border-color: var(--lumiere); }
+
+.passage-depart {
+  position: absolute; z-index: 2; top: 0; left: 0; right: 0;
+  min-height: calc(100vh - var(--entete)); min-height: calc(100svh - var(--entete));
+  display: flex; align-items: center; padding: 40px 0 150px; pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 130px), transparent); mask-image: linear-gradient(180deg, #000 calc(100% - 130px), transparent);
+}
+.passage-depart .cadre { width: 100%; pointer-events: auto; }
+.passage-lieu {
+  margin: 0; text-align: center; font: 600 clamp(2.6rem, 8vw, 6.4rem)/1.02 var(--titre); color: var(--lumiere);
+  text-shadow: 0 0 60px rgb(255 214 150 / .35), 0 2px 18px rgb(0 0 0 / .8);
+}
+.passage-accueil .passage-depart { background: linear-gradient(90deg, rgb(11 9 9 / .9), rgb(11 9 9 / .6) 38%, transparent 62%); }
+.passage-depart h1 { font-size: clamp(2.6rem, 6.2vw, 5.4rem); font-weight: 600; line-height: 1.04; max-width: 9.5em; text-shadow: 0 2px 24px rgb(0 0 0 / .7); }
+.passage-depart h1 span { display: block; }
+.passage-depart h1 span + span { color: var(--lumiere); text-shadow: 0 0 42px rgb(255 236 200 / .35); }
+.passage-depart .chapeau { margin: 28px 0 34px; max-width: 30rem; font-size: 1.3rem; line-height: 1.5; color: var(--ivoire); }
+.passage-depart .note { display: flex; gap: 12px; align-items: baseline; margin: 30px 0 0; max-width: 28rem; color: var(--cendre); font-style: italic; }
+.passage-depart .note svg { flex: none; width: 13px; height: 12px; transform: translateY(1px); }
+.actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* L'arrivée glisse sur le dernier plan : le lieu reste visible derrière le titre. */
+.passage + .arrivee {
+  position: relative; z-index: 3;
+  margin-top: calc(-.5 * (100vh - var(--entete))); margin-top: calc(-.5 * (100svh - var(--entete)));
+  padding-top: calc(clamp(56px, 9vw, 112px) + 16svh);
+  background: linear-gradient(180deg, transparent, rgb(18 16 17 / .8) 16svh, var(--nuit) 32svh);
+}
+.passage + .appel.arrivee { padding-bottom: clamp(64px, 9vw, 112px); }
+.choix-titre { margin: 8px 0 18px; font-size: 1rem; letter-spacing: .12em; color: var(--ivoire); }
+.plaques { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; width: min(100%, 50rem); margin: 0 auto 30px; }
+.plaques button {
+  min-height: 56px; padding: 0 12px; border: 1px solid rgb(239 230 210 / .3); background: rgb(26 23 24 / .85);
+  font: 600 .86rem/1 var(--titre); letter-spacing: .14em; color: var(--ivoire);
+}
+.plaques button:hover { border-color: var(--lumiere); }
+.plaques button[aria-pressed='true'] { background: var(--sang); border-color: var(--sang-vif); color: #fff; box-shadow: 0 0 28px rgb(198 42 32 / .35); }
+
+/* Trois côtés d'une même foi */
+.cotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; counter-reset: cote; }
+.cote { padding: 0 clamp(18px, 3vw, 40px); border-left: 1px solid var(--trait); }
+.cote:first-child { border-left: 0; padding-left: 0; }
+.cote svg { width: 46px; height: 42px; margin-bottom: 22px; }
+.cote svg path { fill: none; stroke: rgb(239 230 210 / .25); stroke-width: 2; }
+.cote svg path.actif { stroke: var(--sang-vif); stroke-width: 3; }
+.cote h3 { font-size: 1.5rem; margin-bottom: 4px; }
+.cote .sous { font-style: italic; color: var(--or); margin-bottom: 14px; }
+.cote p:last-child { color: var(--cendre); margin: 0; }
+
+/* Trois pas : une vraie suite, donc numérotée */
+.pas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 4vw, 56px); }
+.pas li { position: relative; padding-top: 22px; border-top: 2px solid var(--sang); }
+.pas .num { font: 600 2.6rem/1 var(--titre); color: var(--sang-vif); display: block; margin-bottom: 16px; }
+.pas h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.pas p { color: var(--cendre); margin: 0; }
+
+/* Ceux qui vous accueillent */
+.voix-liste { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--trait); border: 1px solid var(--trait); }
+.voix-liste li { background: var(--nuit); }
+.voix-liste a { display: flex; flex-direction: column; height: 100%; padding: 26px 24px 22px; text-decoration: none; transition: background-color .25s; }
+.voix-liste a:hover { background: var(--nuit-2); }
+.voix-liste .num { font: 600 .8rem/1 var(--titre); color: var(--sang-vif); letter-spacing: .12em; margin-bottom: 14px; }
+.voix-liste q { quotes: '« ' ' »'; font-style: italic; font-size: 1.12rem; line-height: 1.45; color: var(--ivoire); flex: 1; }
+.voix-liste .qui { margin-top: 18px; font: 600 .82rem/1.3 var(--titre); letter-spacing: .06em; color: var(--lumiere); }
+.voix-liste .qui span { display: block; font: italic 400 .98rem/1.3 var(--texte); letter-spacing: 0; color: var(--cendre); margin-top: 2px; }
+
+/* L'appel */
+.appel { text-align: center; padding: clamp(64px, 10vw, 128px) 0; background: radial-gradient(ellipse 50% 70% at 50% 100%, rgb(198 42 32 / .2), transparent 70%); }
+.appel h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); margin-bottom: 18px; }
+.appel > .cadre > p { max-width: 32rem; margin: 0 auto 32px; font-size: 1.25rem; color: var(--cendre); }
+.appel .serment { margin: 34px auto 0; max-width: 34rem; font-style: italic; color: var(--cendre); font-size: 1.05rem; }
+.appel .actions { justify-content: center; }
+
+/* ---------- La Foi ---------- */
+.preceptes { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); }
+.precepte { padding-top: 26px; border-top: 1px solid var(--trait); }
+.precepte .latin { font: italic 400 1.2rem/1 var(--texte); color: var(--or); }
+.precepte h3 { font-size: 1.5rem; margin: 10px 0 14px; }
+.precepte p { color: var(--cendre); }
+.blason-bloc { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(28px, 6vw, 80px); align-items: start; }
+.blason-bloc img { width: 100%; max-width: 340px; filter: drop-shadow(0 20px 40px rgb(0 0 0 / .55)); }
+.definitions { margin: 0; display: grid; gap: 22px; }
+.definitions div { display: grid; grid-template-columns: 12rem minmax(0, 1fr); gap: 18px; padding-bottom: 20px; border-bottom: 1px solid var(--trait); }
+.definitions dt { font: 600 1rem/1.4 var(--titre); }
+.definitions dd { margin: 0; color: var(--cendre); }
+.couleur-pastille { display: inline-block; width: 12px; height: 12px; margin-right: 10px; border: 1px solid rgb(239 230 210 / .4); vertical-align: 1px; }
+.couleur-rouge { background: var(--sang); }
+.couleur-noir { background: #000; }
+.couleur-blanc { background: var(--lumiere); }
+.deux-colonnes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 5vw, 64px); }
+.etiquette { font: italic 500 1.1rem/1.2 var(--texte); color: var(--sang-vif); margin-bottom: 14px; }
+.liste-simple { list-style: none; margin: 0; padding: 0; }
+.liste-simple li { padding: 14px 0 14px 26px; border-bottom: 1px solid var(--trait); position: relative; color: var(--cendre); }
+.liste-simple li::before { content: ''; position: absolute; left: 2px; top: 1.15em; width: 9px; height: 8px; background: var(--sang); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+
+/* Écho Mortis : la page s'assombrit */
+.echo { background: #000; border-top: 1px solid var(--trait); border-bottom: 1px solid var(--trait); }
+.echo .source { font-style: italic; color: var(--cendre); margin-bottom: 28px; }
+.echo .citation { margin-bottom: 42px; }
+.echo .intro { max-width: var(--lecture); font-size: 1.22rem; }
+.echo-chapitres { counter-reset: chap; display: grid; gap: 44px; margin-top: 56px; }
+.echo-chapitre { display: grid; grid-template-columns: 9rem minmax(0, var(--lecture)); gap: 24px; }
+.echo-chapitre .num { font: 600 .82rem/1.6 var(--titre); letter-spacing: .14em; color: var(--sang-vif); }
+.echo-chapitre h3 { font-size: 1.35rem; margin-bottom: 16px; }
+.echo-chapitre p { color: #CFC6B4; }
+
+/* ---------- Origines : la chronique en six générations ---------- */
+.chronologie { position: relative; list-style: none; margin: 0; padding: 0; }
+.chronologie::before { content: ''; position: absolute; left: 31px; top: 8px; bottom: 0; width: 1px; background: var(--trait); }
+.chronologie-feu { position: absolute; left: 31px; top: 8px; width: 1px; height: 0; background: linear-gradient(var(--lumiere), var(--sang)); box-shadow: 0 0 12px rgb(255 236 200 / .5); }
+.generation { position: relative; padding: 0 0 clamp(48px, 7vw, 88px) 92px; }
+.generation .marque-gen {
+  position: absolute; left: 0; top: 0; width: 64px; height: 58px;
+  display: grid; place-items: center; padding-top: 14px;
+  font: 600 1rem/1 var(--titre); color: var(--lumiere);
+  background: var(--nuit);
+}
+.generation .marque-gen svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.generation .marque-gen svg path { fill: var(--nuit); stroke: var(--sang); stroke-width: 2; }
+.generation .marque-gen span { position: relative; }
+.generation .nom-gen { margin: 4px 0 6px; font: italic 500 1.05rem/1.2 var(--texte); color: var(--sang-vif); }
+.generation h2 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); margin-bottom: 14px; }
+.generation > p { color: var(--cendre); max-width: 36rem; font-size: 1.2rem; }
+.faits { list-style: none; margin: 30px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--trait); border: 1px solid var(--trait); }
+.faits li { background: var(--nuit); padding: 22px 24px; }
+.faits .date { font: 600 .74rem/1.3 var(--titre); letter-spacing: .12em; color: var(--or); }
+.faits h3 { font-size: 1.15rem; margin: 8px 0 10px; }
+.faits p { margin: 0; color: var(--cendre); font-size: 1.05rem; }
+.faits .lien-fleche { display: inline-block; margin-top: 14px; }
+
+/* ---------- Branches ---------- */
+.voix-bloc { text-align: center; padding: 36px var(--marge); border: 1px solid var(--trait); margin-bottom: 1px; background: linear-gradient(rgb(255 244 218 / .04), transparent); }
+.voix-bloc h2 { font-size: 1.8rem; }
+.voix-bloc .sous { font-style: italic; color: var(--or); margin: 6px 0 12px; }
+.voix-bloc p:last-child { margin: 0 auto; max-width: 34rem; color: var(--cendre); }
+.branches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--trait); border: 1px solid var(--trait); }
+.branche { background: var(--nuit); display: flex; flex-direction: column; }
+.branche-image { aspect-ratio: 1; overflow: hidden; background: var(--nuit-2); border-bottom: 3px solid var(--couleur, var(--sang)); }
+.branche-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.branche:hover .branche-image img { transform: scale(1.03); }
+.branche-corps { padding: 24px 24px 28px; display: flex; flex-direction: column; flex: 1; }
+.branche h3 { font-size: 1.5rem; }
+.branche .sous { font-style: italic; color: var(--couleur, var(--sang-vif)); margin: 4px 0 14px; }
+.branche-corps > p { color: var(--cendre); flex: 1; }
+.branche[data-couleur='bleu'] { --couleur: var(--bleu); }
+.branche[data-couleur='blanc'] { --couleur: var(--lumiere); }
+.branche[data-couleur='rouge'] { --couleur: var(--sang-vif); }
+.branche.est-ouverte { box-shadow: inset 0 0 0 1px var(--couleur); }
+.detail-branche { margin-top: clamp(40px, 6vw, 72px); --couleur: var(--sang-vif); }
+.detail-branche[data-couleur='bleu'] { --couleur: var(--bleu); }
+.detail-branche[data-couleur='blanc'] { --couleur: var(--lumiere); }
+.detail-branche > h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+.detail-branche > .sous { font-style: italic; color: var(--couleur); margin: 6px 0 22px; }
+.detail-branche h3 { font-size: 1.3rem; margin: 48px 0 20px; }
+
+/* Les grades : une échelle, du nouveau venu au Grand Maître */
+.echelle { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--trait); border: 1px solid var(--trait); }
+.echelle li { background: var(--nuit); padding: 18px 18px 20px; position: relative; }
+.echelle li::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--couleur); opacity: calc(.25 + var(--rang, 0) * .12); }
+.echelle h4 { font-size: 1.05rem; }
+.echelle .niveau { font-style: italic; color: var(--couleur); font-size: .98rem; margin: 2px 0 10px; }
+.echelle p { margin: 0; color: var(--cendre); font-size: 1rem; line-height: 1.5; }
+.poles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px 32px; }
+.poles li { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 16px; }
+.sigle { width: 52px; height: 52px; display: grid; place-items: center; border: 1px solid var(--couleur); font: 600 .9rem/1 var(--titre); color: var(--couleur); }
+.poles h4 { font-size: 1.08rem; }
+.poles .sous { font-style: italic; color: var(--cendre); margin: 0 0 6px; }
+.poles p { margin: 0; color: var(--cendre); font-size: 1.02rem; }
+.legions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.legion { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 22px; padding: 24px; border: 1px solid var(--trait); background: var(--nuit-2); }
+.legion img { width: 140px; height: 140px; object-fit: contain; }
+.legion .rang { font: 500 .78rem/1 var(--titre); letter-spacing: .12em; color: var(--or); margin: 6px 0 12px; }
+.legion q { quotes: '« ' ' »'; display: block; font-style: italic; color: var(--lumiere); margin-bottom: 12px; }
+.legion .specialite { margin: 0; color: var(--cendre); font-size: 1rem; }
+.radio { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--trait); border: 1px solid var(--trait); }
+.radio div { background: var(--nuit); padding: 16px 20px; display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 14px; }
+.radio dt { font: 600 .9rem/1.5 var(--titre); color: var(--lumiere); }
+.radio dd { margin: 0; color: var(--cendre); font-size: 1.02rem; }
+
+/* ---------- Apôtres : le rayon de livres ---------- */
+.rayon {
+  display: flex; align-items: flex-end; gap: 6px;
+  padding: 0 clamp(8px, 2vw, 24px);
+  min-height: 430px;
+  border-bottom: 14px solid #2A1F19;
+  box-shadow: 0 10px 0 #120D0A, 0 30px 50px rgb(0 0 0 / .5);
+  background: linear-gradient(transparent 60%, rgb(198 42 32 / .06));
+  overflow-x: auto; scrollbar-width: thin;
+}
+.livre {
+  --h: 380px;
+  flex: 1 0 52px; max-width: 108px; height: var(--h);
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  padding: 18px 0 16px;
+  text-decoration: none; color: var(--ivoire);
+  background: var(--cuir, #3A1512);
+  border-radius: 3px 3px 0 0;
+  box-shadow: inset 4px 0 0 rgb(255 255 255 / .05), inset -6px 0 10px rgb(0 0 0 / .45), 0 0 0 1px rgb(0 0 0 / .4);
+  transition: transform .35s cubic-bezier(.3, .7, .3, 1), box-shadow .35s;
+}
+.livre::before, .livre::after { content: ''; position: absolute; left: 6px; right: 6px; height: 2px; background: var(--or); opacity: .75; }
+.livre::before { top: 54px; }
+.livre::after { bottom: 46px; }
+.livre:hover, .livre:focus-visible { transform: translateY(-18px); box-shadow: inset 4px 0 0 rgb(255 255 255 / .06), inset -6px 0 10px rgb(0 0 0 / .45), 0 18px 30px rgb(0 0 0 / .5); }
+.livre .num { font: 600 .9rem/1 var(--titre); color: var(--or); }
+.livre .nom { writing-mode: vertical-rl; transform: rotate(180deg); font: 600 1rem/1 var(--titre); letter-spacing: .08em; white-space: nowrap; }
+.livre .titre-livre { font-size: 0; }
+.livre-triangle { width: 14px; height: 12px; }
+.livre-triangle path { fill: var(--or); }
+.livre[data-cuir='0'] { --cuir: #4A1712; }
+.livre[data-cuir='1'] { --cuir: #191516; }
+.livre[data-cuir='2'] { --cuir: #2B2A35; }
+.livre[data-cuir='3'] { --cuir: #3D2A1C; }
+.livre[data-cuir='4'] { --cuir: #6A1410; }
+.livre[data-cuir='5'] { --cuir: #23303F; }
+.livre[data-cuir='6'] { --cuir: #2E2C24; }
+.livre[data-cuir='7'] { --cuir: #0E0C0C; }
+.livre[data-cuir='dossier'] { --cuir: #B9A57C; color: #2A2016; }
+.livre[data-cuir='dossier'] .num { color: #6E1410; }
+.livre[data-cuir='dossier']::before, .livre[data-cuir='dossier']::after { background: #6E1410; }
+.rayon-aide { margin: 22px 0 0; color: var(--cendre); font-style: italic; }
+
+/* Le livre ouvert */
+.vie-tete { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 28px; align-items: start; }
+.vie-num { font: 600 clamp(3rem, 8vw, 6rem)/.9 var(--titre); color: var(--sang-vif); }
+.vie-tete h1 { font-size: clamp(2.1rem, 5vw, 3.8rem); }
+.vie-tete .titre-apotre { font: italic 400 1.4rem/1.3 var(--texte); color: var(--or); margin: 8px 0 26px; }
+.livre-ouvert { display: grid; grid-template-columns: 15rem minmax(0, var(--lecture)); gap: clamp(28px, 5vw, 72px); align-items: start; }
+.sommaire { position: sticky; top: calc(var(--entete) + 24px); }
+.sommaire summary { list-style: none; font: 600 .82rem/1 var(--titre); letter-spacing: .12em; color: var(--cendre); padding: 0 0 14px; cursor: default; }
+.sommaire summary::-webkit-details-marker { display: none; }
+.sommaire ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--trait); }
+.sommaire a { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); padding: 6px 0 6px 14px; margin-left: -1px; border-left: 1px solid transparent; text-decoration: none; color: var(--cendre); font-size: 1rem; line-height: 1.35; }
+.sommaire a span:first-child { font: 600 .74rem/1.9 var(--titre); color: var(--sang-vif); }
+.sommaire a:hover { color: var(--ivoire); }
+.sommaire a.actif { color: var(--lumiere); border-left-color: var(--sang-vif); }
+.chapitre { padding-bottom: 46px; margin-bottom: 46px; border-bottom: 1px solid var(--trait); }
+.chapitre:last-of-type { border-bottom: 0; }
+.chapitre .num { display: block; font: 600 .8rem/1 var(--titre); letter-spacing: .16em; color: var(--sang-vif); margin-bottom: 12px; }
+.chapitre h2 { font-size: clamp(1.45rem, 3vw, 1.9rem); margin-bottom: 20px; }
+.chapitre p { font-size: 1.2rem; line-height: 1.72; }
+.chapitre .lien-fleche { display: inline-block; margin-top: 4px; }
+.ecriture { padding: 26px 28px; border: 1px solid rgb(207 165 76 / .3); background: rgb(207 165 76 / .04); }
+.ecriture .source { font-style: italic; color: var(--or); font-size: 1rem; margin-bottom: 12px; }
+.ecriture p:last-child { font-style: italic; font-size: 1.32rem; color: var(--lumiere); margin: 0; }
+.chapitre-un p:first-of-type::first-letter { }
+.suite { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--trait); border: 1px solid var(--trait); margin-top: 24px; }
+.suite a { display: block; padding: 22px 24px; background: var(--nuit); text-decoration: none; transition: background-color .2s; }
+.suite a:hover { background: var(--nuit-2); }
+.suite a:last-child { text-align: right; }
+.suite small { display: block; font: 500 .74rem/1 var(--titre); letter-spacing: .12em; color: var(--cendre); margin-bottom: 8px; }
+.suite strong { font: 600 1.1rem/1.3 var(--titre); }
+
+/* Le dossier classifié de Kravtsova */
+.dossier .livre-ouvert article { font-family: var(--machine); }
+.dossier .chapitre p { font-family: var(--machine); font-size: 1.04rem; line-height: 1.85; color: #DCD2BE; }
+.dossier .chapitre h2 { font-family: var(--machine); font-weight: 400; letter-spacing: 0; }
+.dossier .ecriture { border-color: rgb(198 42 32 / .5); background: rgb(198 42 32 / .05); }
+.dossier .ecriture .source { color: var(--sang-vif); font-style: normal; font-family: var(--machine); }
+.dossier .ecriture p:last-child { font: 400 1.04rem/1.85 var(--machine); color: #DCD2BE; }
+.tampon {
+  display: inline-block; margin: 0 0 26px; padding: 6px 14px;
+  border: 2px solid var(--sang-vif); color: var(--sang-vif);
+  font: 400 1rem/1 var(--machine); letter-spacing: .2em; transform: rotate(-3deg);
+}
+.scelle p { color: var(--cendre) !important; }
+
+/* Passages censurés par le Bureau */
+.censure { display: grid; gap: 10px; margin: 6px 0 28px; }
+.censure span { display: block; height: 1.15em; background: #000; box-shadow: 0 0 0 1px rgb(239 230 210 / .08); }
+.censure span:nth-child(2) { width: 92%; }
+.censure span:nth-child(3) { width: 97%; }
+.censure span:nth-child(4) { width: 64%; }
+.raye { text-decoration: line-through; text-decoration-color: var(--sang-vif); text-decoration-thickness: 2px; color: var(--cendre); }
+
+/* ---------- Reliques ---------- */
+.reliquaire { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--trait); border: 1px solid var(--trait); }
+.reliquaire li { background: var(--nuit); }
+.reliquaire a { display: flex; flex-direction: column; align-items: center; text-align: center; height: 100%; padding: 34px 24px 30px; text-decoration: none; transition: background-color .25s; }
+.reliquaire a:hover { background: var(--nuit-2); }
+.vitrine { width: 150px; height: 150px; display: grid; place-items: center; margin-bottom: 22px; border-radius: 50%; background: radial-gradient(circle, rgb(207 165 76 / .18), transparent 68%); }
+.vitrine svg { width: 96px; height: 96px; }
+.vitrine svg * { fill: none; stroke: var(--or); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.est-perdue .vitrine { background: none; border: 1px dashed rgb(239 230 210 / .25); }
+.est-perdue .vitrine svg * { stroke: rgb(239 230 210 / .28); }
+.reliquaire h2 { font-size: 1.2rem; margin-bottom: 8px; }
+.statut { font-style: italic; color: var(--or); }
+.est-perdue .statut { color: var(--sang-vif); }
+.relique-detail { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, var(--lecture)); gap: clamp(28px, 6vw, 80px); align-items: start; }
+.relique-detail .vitrine { width: 100%; max-width: 280px; height: auto; aspect-ratio: 1; }
+.relique-detail .vitrine svg { width: 62%; height: 62%; }
+.relique-detail .statut { display: block; margin-bottom: 26px; font-size: 1.2rem; }
+
+/* ---------- Chroniques ---------- */
+.guerres { display: grid; gap: 1px; background: var(--trait); border: 1px solid var(--trait); }
+.guerre { background: var(--nuit); display: grid; grid-template-columns: 11rem minmax(0, 1fr) auto; gap: clamp(18px, 4vw, 48px); align-items: center; padding: clamp(24px, 4vw, 40px); text-decoration: none; transition: background-color .25s; }
+.guerre:hover { background: var(--nuit-2); }
+.guerre .rang-guerre { font: 600 .82rem/1.3 var(--titre); letter-spacing: .12em; color: var(--sang-vif); }
+.guerre h2 { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 10px; }
+.guerre p { margin: 0; color: var(--cendre); max-width: 40rem; }
+.guerre .bilan { display: block; margin-top: 14px; font-style: italic; color: var(--or); }
+.progression { position: fixed; left: 0; top: var(--entete); z-index: 40; height: 2px; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, var(--sang), var(--lumiere)); }
+.recit .chapitre p { font-size: 1.24rem; }
+.saut { display: none; }
+
+/* ---------- Code ---------- */
+.onglets { display: flex; gap: 0; border-bottom: 1px solid var(--trait); margin-bottom: 36px; overflow-x: auto; }
+.onglets a { padding: 14px 22px; font: 600 .86rem/1.2 var(--titre); letter-spacing: .08em; text-decoration: none; color: var(--cendre); border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+.onglets a[aria-current='page'] { color: var(--lumiere); border-bottom-color: var(--sang-vif); }
+.recherche { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-bottom: 40px; }
+.recherche label { font: 600 .8rem/1 var(--titre); letter-spacing: .1em; color: var(--cendre); }
+.recherche input {
+  flex: 1 1 280px; min-height: 48px; padding: 0 16px;
+  background: var(--nuit-2); color: var(--ivoire); border: 1px solid rgb(239 230 210 / .2); border-radius: 2px;
+  font: 400 1.1rem var(--texte);
+}
+.recherche input::placeholder { color: rgb(166 155 136 / .8); }
+.recherche input:focus { outline: none; border-color: var(--lumiere); }
+.recherche output { color: var(--cendre); font-style: italic; min-width: 10rem; }
+.code-corps { display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.code-sections { position: sticky; top: calc(var(--entete) + 24px); list-style: none; margin: 0; padding: 0; }
+.code-sections button { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); width: 100%; padding: 7px 0; text-align: left; background: none; border: 0; color: var(--cendre); font-size: 1.02rem; line-height: 1.35; }
+.code-sections button span:first-child { font: 600 .78rem/1.8 var(--titre); color: var(--sang-vif); }
+.code-sections button:hover { color: var(--lumiere); }
+.preambule { padding: 26px 28px; border-left: 2px solid var(--or); background: rgb(207 165 76 / .04); margin-bottom: 52px; }
+.preambule h2 { font-size: 1.15rem; margin-bottom: 12px; color: var(--or); }
+.preambule p:last-child { margin: 0; }
+.section-code { margin-bottom: 56px; }
+.section-code header { display: flex; align-items: baseline; gap: 18px; margin-bottom: 20px; }
+.section-code header .num { font: 600 1.6rem/1 var(--titre); color: var(--sang-vif); }
+.section-code h2 { font-size: 1.5rem; }
+.section-code header small { margin-left: auto; color: var(--cendre); font-style: italic; font-size: 1rem; white-space: nowrap; }
+.regles { list-style: none; margin: 0; padding: 0; }
+.regle { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); gap: 18px; padding: 16px 0; border-top: 1px solid var(--trait); }
+.regle .ref { font: 600 .92rem/1.8 var(--titre); color: var(--lumiere); }
+.regle p { margin: 0; }
+.regle mark { background: rgb(198 42 32 / .45); color: var(--lumiere); padding: 0 2px; }
+.avis { padding: 32px; border: 1px solid rgb(198 42 32 / .5); background: linear-gradient(rgb(198 42 32 / .08), transparent); }
+.avis h2 { font-size: 1.4rem; margin-bottom: 14px; }
+.avis p { margin: 0; }
+.vide { padding: 32px 0; color: var(--cendre); font-style: italic; }
+
+/* ---------- Rejoindre l'Éveil ---------- */
+.rejoindre {
+  width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 32px);
+  padding: 0; border: 1px solid rgb(239 230 210 / .2); border-radius: 2px;
+  background: var(--nuit); color: var(--ivoire);
+  box-shadow: 0 30px 80px rgb(0 0 0 / .7);
+}
+.rejoindre::backdrop { background: rgb(0 0 0 / .75); }
+.rejoindre-corps { padding: clamp(26px, 5vw, 40px); position: relative; }
+.rejoindre-corps svg.mini { width: 34px; height: 30px; margin-bottom: 18px; }
+.rejoindre h2 { font-size: 1.8rem; margin-bottom: 10px; }
+.rejoindre p { color: var(--cendre); }
+.univers { list-style: none; margin: 24px 0 18px; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.univers a { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 58px; padding: 0 18px; border: 1px solid rgb(239 230 210 / .2); text-decoration: none; font: 600 .9rem/1 var(--titre); letter-spacing: .08em; transition: border-color .2s, background-color .2s; }
+.univers a:hover, .univers a:focus-visible { border-color: var(--sang-vif); background: rgb(198 42 32 / .1); }
+.univers a.choisi { border-color: var(--lumiere); }
+.univers small { font: italic 400 .9rem/1 var(--texte); letter-spacing: 0; color: var(--cendre); }
+.rejoindre .petit { font-size: .98rem; margin: 0; }
+.fermer { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; background: none; border: 0; color: var(--cendre); font-size: 1.6rem; line-height: 1; }
+.fermer:hover { color: var(--lumiere); }
+
+/* ---------- Pied de page ---------- */
+.pied { border-top: 1px solid var(--trait); padding: clamp(48px, 7vw, 80px) 0 calc(36px + env(safe-area-inset-bottom, 0px)); }
+.pied .cadre { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
+.pied h2 { font-size: 1rem; letter-spacing: .14em; margin-bottom: 16px; }
+.pied p { color: var(--cendre); font-size: 1.05rem; }
+.pied ul { list-style: none; margin: 0; padding: 0; }
+.pied li a { display: inline-block; padding: 5px 0; color: var(--cendre); text-decoration: none; }
+.pied li a:hover { color: var(--lumiere); }
+.choix-univers { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
+.choix-univers button { min-height: 40px; padding: 0 14px; background: none; border: 1px solid var(--trait); font: 600 .74rem/1 var(--titre); letter-spacing: .08em; color: var(--cendre); }
+.choix-univers button[aria-pressed='true'] { border-color: var(--lumiere); color: var(--lumiere); }
+.pied .bas { grid-column: 1 / -1; padding-top: 28px; border-top: 1px solid var(--trait); color: var(--cendre); font-size: .95rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+.introuvable { padding: 120px 0; text-align: center; }
+.introuvable h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 16px; }
+.introuvable p { color: var(--cendre); margin-bottom: 28px; }
+
+/* ---------- Tablettes et téléphones ---------- */
+@media (max-width: 900px) {
+  .passage-accueil .passage-depart { align-items: flex-start; padding: 46svh 0 150px; background: linear-gradient(180deg, transparent 40svh, rgb(11 9 9 / .85) 58svh, rgb(11 9 9 / .94)); }
+  .cotes, .pas, .preceptes { grid-template-columns: 1fr; gap: 40px; }
+  .cote { border-left: 0; padding: 0; }
+  .voix-liste { grid-template-columns: 1fr 1fr; }
+  .blason-bloc, .deux-colonnes, .relique-detail { grid-template-columns: 1fr; }
+  .blason-bloc img { max-width: 240px; }
+  .branches { grid-template-columns: 1fr; }
+  .branche { display: grid; grid-template-columns: 38% minmax(0, 1fr); }
+  .branche-image { aspect-ratio: auto; border-bottom: 0; border-right: 3px solid var(--couleur, var(--sang)); }
+  .legions { grid-template-columns: 1fr; }
+  .faits { grid-template-columns: 1fr; }
+  .livre-ouvert, .code-corps { grid-template-columns: 1fr; }
+  .sommaire { position: static; border: 1px solid var(--trait); padding: 16px 18px; }
+  .sommaire summary { cursor: pointer; padding: 0; display: flex; justify-content: space-between; }
+  .sommaire summary::after { content: '+'; font-size: 1.2rem; line-height: .7; }
+  .sommaire[open] summary::after { content: '–'; }
+  .sommaire[open] summary { padding-bottom: 14px; }
+  .code-sections { display: none; }
+  .reliquaire { grid-template-columns: 1fr 1fr; }
+  .echo-chapitre { grid-template-columns: 1fr; gap: 6px; }
+  .guerre { grid-template-columns: 1fr; gap: 10px; }
+  .guerre .lien-fleche { justify-self: start; }
+  .pied .cadre { grid-template-columns: 1fr 1fr; }
+  .pied .cadre > div:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .passage-passer { top: 12px; bottom: auto; }
+  body { font-size: 1.1rem; }
+  :root { --entete: 58px; }
+  .passage-depart h1 { font-size: clamp(2.3rem, 11vw, 3rem); }
+  .passage-depart .chapeau { font-size: 1.18rem; margin: 20px 0 26px; }
+  .plaques { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .actions .bouton { flex: 1 1 auto; }
+  .engagements { grid-template-columns: 1fr; }
+  .engagements div + div { border-left: 0; border-top: 1px solid var(--trait); }
+  .engagements div { padding: 20px 0; }
+  .voix-liste { grid-template-columns: 1fr; }
+  .definitions div { grid-template-columns: 1fr; gap: 4px; }
+  .branche { grid-template-columns: 1fr; }
+  .branche-image { aspect-ratio: 16 / 10; border-right: 0; border-bottom: 3px solid var(--couleur, var(--sang)); }
+  .legion { grid-template-columns: 1fr; }
+  .legion img { width: 120px; height: 120px; }
+  .radio div { grid-template-columns: 1fr; gap: 2px; }
+  .generation { padding-left: 74px; }
+  .chronologie::before, .chronologie-feu { left: 25px; }
+  .generation .marque-gen { width: 52px; height: 47px; font-size: .86rem; padding-top: 11px; }
+  .rayon { min-height: 330px; gap: 4px; padding: 0 6px; }
+  .livre { --h: 290px; flex-basis: 34px; padding: 12px 0; }
+  .livre .nom { font-size: .82rem; }
+  .livre::before { top: 40px; } .livre::after { bottom: 36px; }
+  .vie-tete { grid-template-columns: 1fr; gap: 8px; }
+  .reliquaire { grid-template-columns: 1fr; }
+  .reliquaire a { flex-direction: row; text-align: left; gap: 18px; padding: 20px; }
+  .reliquaire .vitrine { width: 84px; height: 84px; margin: 0; flex: none; }
+  .reliquaire .vitrine svg { width: 54px; height: 54px; }
+  .regle { grid-template-columns: 1fr; gap: 2px; }
+  .section-code header { flex-wrap: wrap; gap: 6px 14px; }
+  .section-code header small { margin-left: 0; width: 100%; }
+  .univers { grid-template-columns: 1fr; }
+  .onglets a { flex: 1 1 0; padding: 12px 8px; white-space: normal; text-align: center; font-size: .78rem; }
+  .suite { grid-template-columns: 1fr; }
+  .suite a:last-child { text-align: left; }
+  .pied .cadre { grid-template-columns: 1fr; }
+  .chapitre p, .recit .chapitre p { font-size: 1.14rem; }
+  .ecriture { padding: 20px; }
+}
+
+/* Mouvement réduit : rien ne disparaît, tout est affiché directement. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
