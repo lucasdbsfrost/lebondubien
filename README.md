@@ -60,3 +60,9 @@ Dans `data/site.js`, tout en haut, la partie `univers` : un lien par univers (ne
 ## En ligne
 
 Il suffit d'envoyer le dossier tel quel (GitHub Pages, ton hébergeur actuel…). Une limite à connaître : comme les pages passent par `#/`, Google ne voit qu'une seule page. Si le référencement compte, il faudra plus tard générer une vraie page HTML par section.
+
+## Le skill de design Impeccable
+
+Le dossier `.claude/skills/impeccable` contient le skill [Impeccable](https://impeccable.style/) (licence Apache 2.0, de Paul Bakaus) : ses consignes et ses références de design. Toute session Claude qui travaille sur ce dépôt le charge et peut l'appeler avec `/impeccable` (par exemple `/impeccable audit` ou `/impeccable critique`).
+
+Pour avoir aussi son détecteur automatique sur ton PC, lance dans ce dossier : `npx impeccable install`, puis dans Claude : `/impeccable hooks on`.

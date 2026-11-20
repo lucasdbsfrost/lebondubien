@@ -63,6 +63,7 @@
   /* ------------------------------------------------------------------
      Dessins : le triangle, et une silhouette par relique.
   ------------------------------------------------------------------ */
+  var chevron = brut('<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5"/></svg>');
   var petitTriangle = brut('<svg viewBox="0 0 26 24" aria-hidden="true"><path d="M13 2.5 24 21.5H2Z" fill="none" stroke="#E0392C" stroke-width="2" stroke-linejoin="round"/></svg>');
 
   function triangleCote(actif) {
@@ -89,9 +90,9 @@
   ------------------------------------------------------------------ */
   function tete(surtitre, titre, chapeau, retour) {
     return h`<header class="page-tete arrivee" id="arrivee"><div class="cadre">
-      ${retour ? h`<a class="retour" href="${retour[0]}">‹ ${retour[1]}</a>` : ''}
-      ${surtitre ? h`<p class="surtitre">${surtitre}</p>` : ''}
+      ${retour ? h`<a class="retour" href="${retour[0]}">${chevron}${retour[1]}</a>` : ''}
       <h1 tabindex="-1">${titre}</h1>
+      ${surtitre ? h`<p class="surtitre">${surtitre}</p>` : ''}
       ${chapeau ? h`<p class="chapeau">${chapeau}</p>` : ''}
     </div></header>`;
   }
@@ -179,13 +180,13 @@
       titre: 'La Foi',
       html: h`
       ${passage('foi', null, 330)}
-      ${tete('La Foi', F.titre, null)}
+      ${tete(null, F.titre, null)}
       <section class="bloc" style="padding-top:0"><div class="cadre prose">${paragraphes(F.intro)}</div></section>
 
       <section class="bloc"><div class="cadre">
         <h2 class="bloc-titre">Les trois préceptes</h2>
         <div class="preceptes">
-          ${F.preceptes.map(function (p) { return h`<article class="precepte"><span class="latin">${p.latin}</span><h3>${p.titre}</h3><p>${p.texte}</p></article>`; })}
+          ${F.preceptes.map(function (p) { return h`<article class="precepte"><h3>${p.titre}</h3><p class="latin" lang="la">${p.latin}</p><p>${p.texte}</p></article>`; })}
         </div>
       </div></section>
 
@@ -207,11 +208,11 @@
         <p class="bloc-sous">${F.croyants.intro}</p>
         <div class="deux-colonnes">
           <div>
-            <p class="etiquette">Les croyants religieux</p>
-            ${F.croyants.religieux.map(function (r) { return h`<h3 style="font-size:1.3rem;margin:22px 0 10px">${r.titre}</h3><p style="color:var(--cendre)">${r.texte}</p>`; })}
+            <h3 class="colonne-titre">Les croyants religieux</h3>
+            ${F.croyants.religieux.map(function (r) { return h`<h4 style="font-size:1.2rem;margin:22px 0 10px">${r.titre}</h4><p style="color:var(--cendre)">${r.texte}</p>`; })}
           </div>
           <div>
-            <p class="etiquette">Les non-croyants</p>
+            <h3 class="colonne-titre">Les non-croyants</h3>
             <p style="color:var(--cendre)">Parmi eux, plusieurs visions coexistent :</p>
             <ul class="liste-simple">${F.croyants.nonCroyants.map(function (t) { return h`<li>${t}</li>`; })}</ul>
           </div>
@@ -249,7 +250,7 @@
       titre: 'Les Origines',
       html: h`
       ${passage('origines', null, 360)}
-      ${tete('Les Origines', O.titre, O.intro)}
+      ${tete(null, O.titre, O.intro)}
       <section class="bloc" style="padding-top:0"><div class="cadre">
         <p class="devise" style="margin-bottom:56px">« ${L.devise} » : le serment gravé.</p>
         <ol class="chronologie">
@@ -257,12 +258,12 @@
           ${O.generations.map(function (g) {
             return h`<li class="generation">
               <span class="marque-gen" aria-hidden="true"><svg viewBox="0 0 64 58"><path d="M32 2 62 56H2Z"/></svg><span>${g.num}</span></span>
-              <p class="nom-gen">${g.num === 'I' ? 'Iʳᵉ' : g.num + 'ᵉ'} génération : ${g.nom}</p>
               <h2>${g.titre}</h2>
+              <p class="nom-gen">${g.num === 'I' ? 'Iʳᵉ' : g.num + 'ᵉ'} génération : ${g.nom}</p>
               <p>${g.texte}</p>
               <ul class="faits">
                 ${g.faits.map(function (f) {
-                  return h`<li><span class="date">${f.date}</span><h3>${f.titre}</h3><p>${f.texte}</p>${f.lien ? h`<a class="lien-fleche" href="#/${f.lien}">Lire la chronique</a>` : ''}</li>`;
+                  return h`<li><h3>${f.titre}</h3><p class="date">${f.date}</p><p>${f.texte}</p>${f.lien ? h`<a class="lien-fleche" href="#/${f.lien}">Lire la chronique</a>` : ''}</li>`;
                 })}
               </ul>
             </li>`;
@@ -283,7 +284,7 @@
       titre: ouverte ? ouverte.nom : 'Les Branches',
       html: h`
       ${passage('branches', null, 300)}
-      ${tete('Les Branches', 'Une seule Voix, trois branches égales', null)}
+      ${tete(null, 'Une seule Voix, trois branches égales', null)}
       <section class="bloc" style="padding-top:0"><div class="cadre">
         <div class="voix-bloc"><h2>${B.voix.titre}</h2><p class="sous">${B.voix.sous}</p><p>${B.voix.texte}</p></div>
         <div class="branches">
@@ -328,7 +329,7 @@
       titre: 'Les Apôtres',
       html: h`
       ${passage('apotres', null, 320)}
-      ${tete('Les Apôtres', 'Les Neuf Apôtres', L.apotresIntro)}
+      ${tete(null, 'Les Neuf Apôtres', L.apotresIntro)}
       <section class="bloc" style="padding-top:0"><div class="cadre">
         <nav class="rayon" aria-label="Le rayon des Vies">
           ${L.apotres.map(function (a, i) {
@@ -366,7 +367,7 @@
       html: h`
       <div class="progression" aria-hidden="true"></div>
       <header class="page-tete"><div class="cadre">
-        <a class="retour" href="#/apotres">‹ Remettre au rayon</a>
+        <a class="retour" href="#/apotres">${chevron}Remettre au rayon</a>
         ${a.dossier ? h`<p class="tampon">Dossier classifié · Bureau</p>` : ''}
         <div class="vie-tete">
           <span class="vie-num" aria-hidden="true">${a.num}</span>
@@ -385,8 +386,7 @@
               ? h`<div class="ecriture"><p class="source">${c.source}</p>${paragraphes(c.texte)}</div>`
               : paragraphes(c.texte);
             return h`<section class="chapitre ${c.scelle ? 'scelle' : ''}" id="chapitre-${n + 1}">
-              <span class="num">Chapitre ${ROMAINS[n]}</span>
-              <h2>${c.titre}</h2>
+              <h2><span class="num">${ROMAINS[n]}</span>${c.titre}</h2>
               ${corps}
               ${c.lien ? h`<a class="lien-fleche" href="#/${c.lien.route}">${c.lien.texte}</a>` : ''}
             </section>`;
@@ -415,7 +415,7 @@
       titre: 'Les Reliques',
       html: h`
       ${passage('reliques', null, 340)}
-      ${tete('Les Reliques', 'Les objets sacrés', L.reliquesIntro)}
+      ${tete(null, 'Les objets sacrés', L.reliquesIntro)}
       <section class="bloc" style="padding-top:0"><div class="cadre">
         <ul class="reliquaire">
           ${L.reliques.map(function (r) {
@@ -460,7 +460,7 @@
       titre: 'Les Chroniques',
       html: h`
       ${passage('chroniques', null, 320)}
-      ${tete('Les Chroniques', 'Les récits de guerre', L.chroniquesIntro)}
+      ${tete(null, 'Les récits de guerre', L.chroniquesIntro)}
       <section class="bloc" style="padding-top:0"><div class="cadre">
         <div class="guerres">
           ${L.chroniques.map(function (c) {
@@ -502,8 +502,7 @@
           <article>
             ${c.chapitres.map(function (ch, n) {
               return h`<section class="chapitre" id="chapitre-${n + 1}">
-                <span class="num">Chapitre ${ROMAINS[n]}</span>
-                <h2>${ch.titre}</h2>
+                <h2><span class="num">${ROMAINS[n]}</span>${ch.titre}</h2>
                 ${String(ch.texte).split(/\n\s*\n/).map(function (p) { return paragrapheRecit(p.trim()); })}
                 ${ch.censure ? h`<div class="censure" role="img" aria-label="Passage censuré par le Bureau"><span></span><span></span><span></span><span></span></div>` : ''}
               </section>`;
